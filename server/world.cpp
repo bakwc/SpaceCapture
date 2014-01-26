@@ -115,6 +115,7 @@ void TWorld::SendWorld() {
         packetPlanet->set_radius(planet->Radius);
         packetPlanet->set_x(planet->Position.x());
         packetPlanet->set_y(planet->Position.y());
+        packetPlanet->set_energy(planet->Energy);
     }
     for (size_t i = 0; i < (size_t)Ships.size(); ++i) {
         TShip* ship = &Ships[i];

@@ -61,12 +61,13 @@ void protobuf_AssignDesc_space_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(TControl));
   TPlanet_descriptor_ = file->message_type(1);
-  static const int TPlanet_offsets_[5] = {
+  static const int TPlanet_offsets_[6] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TPlanet, id_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TPlanet, x_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TPlanet, y_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TPlanet, radius_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TPlanet, playerid_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(TPlanet, energy_),
   };
   TPlanet_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -177,14 +178,14 @@ void protobuf_AddDesc_space_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\013space.proto\022\005Space\"[\n\010TControl\022\022\n\nPlan"
     "etFrom\030\001 \002(\005\022\020\n\010PlanetTo\030\002 \002(\005\022\025\n\rEnergy"
-    "Percent\030\003 \002(\005\022\022\n\nPlayerName\030\004 \002(\t\"M\n\007TPl"
+    "Percent\030\003 \002(\005\022\022\n\nPlayerName\030\004 \002(\t\"]\n\007TPl"
     "anet\022\n\n\002ID\030\001 \002(\005\022\t\n\001X\030\002 \002(\005\022\t\n\001Y\030\003 \002(\005\022\016"
-    "\n\006Radius\030\004 \002(\005\022\020\n\010PlayerId\030\005 \002(\005\"/\n\005TShi"
-    "p\022\t\n\001X\030\001 \002(\005\022\t\n\001Y\030\002 \002(\005\022\020\n\010PlayerID\030\003 \002("
-    "\005\"#\n\007TPlayer\022\n\n\002ID\030\001 \002(\005\022\014\n\004Name\030\002 \002(\t\"g"
-    "\n\006TWorld\022\037\n\007Planets\030\001 \003(\0132\016.Space.TPlane"
-    "t\022\033\n\005Ships\030\002 \003(\0132\014.Space.TShip\022\037\n\007Player"
-    "s\030\003 \003(\0132\016.Space.TPlayer", 383);
+    "\n\006Radius\030\004 \002(\005\022\020\n\010PlayerId\030\005 \002(\005\022\016\n\006Ener"
+    "gy\030\006 \002(\005\"/\n\005TShip\022\t\n\001X\030\001 \002(\005\022\t\n\001Y\030\002 \002(\005\022"
+    "\020\n\010PlayerID\030\003 \002(\005\"#\n\007TPlayer\022\n\n\002ID\030\001 \002(\005"
+    "\022\014\n\004Name\030\002 \002(\t\"g\n\006TWorld\022\037\n\007Planets\030\001 \003("
+    "\0132\016.Space.TPlanet\022\033\n\005Ships\030\002 \003(\0132\014.Space"
+    ".TShip\022\037\n\007Players\030\003 \003(\0132\016.Space.TPlayer", 399);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "space.proto", &protobuf_RegisterTypes);
   TControl::default_instance_ = new TControl();
@@ -561,6 +562,7 @@ const int TPlanet::kXFieldNumber;
 const int TPlanet::kYFieldNumber;
 const int TPlanet::kRadiusFieldNumber;
 const int TPlanet::kPlayerIdFieldNumber;
+const int TPlanet::kEnergyFieldNumber;
 #endif  // !_MSC_VER
 
 TPlanet::TPlanet()
@@ -584,6 +586,7 @@ void TPlanet::SharedCtor() {
   y_ = 0;
   radius_ = 0;
   playerid_ = 0;
+  energy_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -623,6 +626,7 @@ void TPlanet::Clear() {
     y_ = 0;
     radius_ = 0;
     playerid_ = 0;
+    energy_ = 0;
   }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -709,6 +713,22 @@ bool TPlanet::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
+        if (input->ExpectTag(48)) goto parse_Energy;
+        break;
+      }
+      
+      // required int32 Energy = 6;
+      case 6: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_Energy:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &energy_)));
+          set_has_energy();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -756,6 +776,11 @@ void TPlanet::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->playerid(), output);
   }
   
+  // required int32 Energy = 6;
+  if (has_energy()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->energy(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -787,6 +812,11 @@ void TPlanet::SerializeWithCachedSizes(
   // required int32 PlayerId = 5;
   if (has_playerid()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->playerid(), target);
+  }
+  
+  // required int32 Energy = 6;
+  if (has_energy()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->energy(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -835,6 +865,13 @@ int TPlanet::ByteSize() const {
           this->playerid());
     }
     
+    // required int32 Energy = 6;
+    if (has_energy()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->energy());
+    }
+    
   }
   if (!unknown_fields().empty()) {
     total_size +=
@@ -877,6 +914,9 @@ void TPlanet::MergeFrom(const TPlanet& from) {
     if (from.has_playerid()) {
       set_playerid(from.playerid());
     }
+    if (from.has_energy()) {
+      set_energy(from.energy());
+    }
   }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
@@ -894,7 +934,7 @@ void TPlanet::CopyFrom(const TPlanet& from) {
 }
 
 bool TPlanet::IsInitialized() const {
-  if ((_has_bits_[0] & 0x0000001f) != 0x0000001f) return false;
+  if ((_has_bits_[0] & 0x0000003f) != 0x0000003f) return false;
   
   return true;
 }
@@ -906,6 +946,7 @@ void TPlanet::Swap(TPlanet* other) {
     std::swap(y_, other->y_);
     std::swap(radius_, other->radius_);
     std::swap(playerid_, other->playerid_);
+    std::swap(energy_, other->energy_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);

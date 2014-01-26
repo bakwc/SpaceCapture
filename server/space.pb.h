@@ -245,6 +245,13 @@ class TPlanet : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 playerid() const;
   inline void set_playerid(::google::protobuf::int32 value);
   
+  // required int32 Energy = 6;
+  inline bool has_energy() const;
+  inline void clear_energy();
+  static const int kEnergyFieldNumber = 6;
+  inline ::google::protobuf::int32 energy() const;
+  inline void set_energy(::google::protobuf::int32 value);
+  
   // @@protoc_insertion_point(class_scope:Space.TPlanet)
  private:
   inline void set_has_id();
@@ -257,6 +264,8 @@ class TPlanet : public ::google::protobuf::Message {
   inline void clear_has_radius();
   inline void set_has_playerid();
   inline void clear_has_playerid();
+  inline void set_has_energy();
+  inline void clear_has_energy();
   
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   
@@ -265,9 +274,10 @@ class TPlanet : public ::google::protobuf::Message {
   ::google::protobuf::int32 y_;
   ::google::protobuf::int32 radius_;
   ::google::protobuf::int32 playerid_;
+  ::google::protobuf::int32 energy_;
   
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(6 + 31) / 32];
   
   friend void  protobuf_AddDesc_space_2eproto();
   friend void protobuf_AssignDesc_space_2eproto();
@@ -828,6 +838,28 @@ inline ::google::protobuf::int32 TPlanet::playerid() const {
 inline void TPlanet::set_playerid(::google::protobuf::int32 value) {
   set_has_playerid();
   playerid_ = value;
+}
+
+// required int32 Energy = 6;
+inline bool TPlanet::has_energy() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void TPlanet::set_has_energy() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void TPlanet::clear_has_energy() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void TPlanet::clear_energy() {
+  energy_ = 0;
+  clear_has_energy();
+}
+inline ::google::protobuf::int32 TPlanet::energy() const {
+  return energy_;
+}
+inline void TPlanet::set_energy(::google::protobuf::int32 value) {
+  set_has_energy();
+  energy_ = value;
 }
 
 // -------------------------------------------------------------------
